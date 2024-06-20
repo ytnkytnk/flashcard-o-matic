@@ -49,3 +49,48 @@
 .lead {
   color: white;
 }
+
+/* DeckList */
+
+.deck-contents {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  padding: 10px;
+  border: solid 1px lightgrey;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.right-edge-buttons {
+  margin-left: auto;
+}
+
+/* Deck */
+
+.deck-card-contents {
+  padding: 5px;
+  margin: 10px;
+  border: solid 1px lightgrey;
+}
+
+.card-text-contents {
+  display: flex;
+  flex-direction: row;
+}
+
+.left-column {
+  width: 50%;
+}
+
+.right-column {
+  width: 50%;
+}
+
+.right-edge-buttons {
+  text-align: right;
+}
