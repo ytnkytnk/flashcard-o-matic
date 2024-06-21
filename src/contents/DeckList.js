@@ -6,7 +6,14 @@ function DeckList({ decks, setCurrentDeck }) {
 
   return (
     <div>
-      <button style={{ width: "150px", height: "30px" }}>+ Create Deck</button>
+      <button
+        style={{ width: "150px", height: "30px" }}
+        onClick={() => {
+          navigate(`/decks/new`);
+        }}
+      >
+        + Create Deck
+      </button>
       <h1>Deck List</h1>
       {decks.map((deck) => (
         <div key={deck.id} className="deck-contents">
@@ -23,7 +30,13 @@ function DeckList({ decks, setCurrentDeck }) {
               >
                 View
               </button>
-              <button>Study</button>
+              <button
+                onClick={() => {
+                  navigate(`/decks/${deck.id}/study`);
+                }}
+              >
+                Study
+              </button>
             </div>
             <div className="right-edge-buttons">
               <button className="right-edge-buttons">Delete</button>

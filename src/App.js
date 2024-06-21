@@ -9,8 +9,8 @@ import "./App.css";
 function App() {
   return (
     <div className="app-routes">
-        <Layout />         
-      </div>
+      <Layout />
+    </div>
   );
 }
 
