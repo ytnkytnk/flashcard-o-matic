@@ -33,15 +33,27 @@ function Deck() {
         <p>{deck.description}</p>
         <div className="flex-content-row">
           <div className="left-deck-buttons">
-            <button>Edit</button>
             <button
               onClick={() => {
-                navigate(`/decks/${deck.id}/study`);
+                navigate(`edit`);
+              }}
+            >
+              Edit
+            </button>
+            <button
+              onClick={() => {
+                navigate(`study`);
               }}
             >
               Study
             </button>
-            <button>+ Add Cards</button>
+            <button
+              onClick={() => {
+                navigate(`cards/new`);
+              }}
+            >
+              + Add Cards
+            </button>
           </div>
           <button className="right-edge-buttons">Delete</button>
         </div>
@@ -55,7 +67,15 @@ function Deck() {
             <p className="right-column">{card.back}</p>
           </div>
           <div className="right-edge-buttons">
-            <button>Edit</button>
+            <button
+              id={card.id}
+              onClick={() => {
+                console.log(card.id);
+                navigate(`cards/${card.id}/edit`);
+              }}
+            >
+              Edit
+            </button>
             <button>Delete</button>
           </div>
         </div>

@@ -3,18 +3,24 @@ import { useNavigate } from "react-router-dom";
 import data from "../data/db.json";
 import { createDeck } from "../utils/api";
 
-function CreateNew() {
+function CreateDeck() {
   const navigate = useNavigate();
 
   // get current decks length for assigning the new deckId
   const deckLen = data.decks.length;
+  console.log("deckLen:", deckLen);
 
-  // useState
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
+  const initialFormState = {};
 
-  const handleNameChange = (event) => setName(event.target.value);
-  const handleDescriptionChange = (event) => setDescription(event.target.value);
+  const [formData, setFormData] = useState({ ...initialFormState });
+
+  const handleChange = ({ target }) => {
+    setFormData({
+      ...formData,
+      [target.name]: target.value,
+    });
+    // console.log("handling changes........");
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -22,9 +28,12 @@ function CreateNew() {
     const controller = new AbortController();
     const signal = controller.signal;
 
-    const deck = {};
-    createDeck(deck, signal);
-    // navigate(`/decks/${deckLen + 1}`);
+    console.log("before formData submit:", formData);
+    createDeck(formData, signal);
+    // setFormData({ ...initialFormState });
+    console.log("formData was submitted!", formData);
+
+    navigate(`/decks/`);
   };
 
   return (
@@ -38,6 +47,7 @@ function CreateNew() {
           id="name"
           name="name"
           placeholder="Deck Name"
+          onChange={handleChange}
         ></input>
         <label>Description</label>
         <textarea
@@ -46,6 +56,7 @@ function CreateNew() {
           id="description"
           name="description"
           placeholder="Brief description of the deck"
+          onChange={handleChange}
         ></textarea>
         <button onClick={() => navigate(`/`)}>Cancel</button>
         <input type="submit" value="submit" />
@@ -54,4 +65,4 @@ function CreateNew() {
   );
 }
 
-export default CreateNew;
+export default CreateDeck;
