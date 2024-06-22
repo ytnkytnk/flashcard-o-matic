@@ -85,8 +85,8 @@ button {
 }
 
 .deck-card-contents {
-  padding: 5px;
-  margin: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
   border: solid 1px lightgrey;
 }
 
@@ -105,4 +105,12 @@ button {
 
 .right-edge-buttons {
   text-align: right;
+}
+
+/* Study */
+
+.single-card-contents {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: solid 1px lightgrey;
 }
