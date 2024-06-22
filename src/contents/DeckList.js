@@ -14,7 +14,7 @@ function DeckList({ decks, setCurrentDeck }) {
       >
         + Create Deck
       </button>
-      <h1>Deck List</h1>
+      {/* <h1>Deck List</h1> */}
       {decks.map((deck) => (
         <div key={deck.id} className="deck-contents">
           <h2>{deck.name}</h2>

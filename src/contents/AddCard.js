@@ -58,7 +58,8 @@ function AddCard() {
   }
   return (
     <div>
-      <h1>{deck.name}: Add Card</h1>
+      <h1>Add Card</h1>
+      <h2>{deck.name}</h2>
       <label>Front</label>
       <form onSubmit={handleSubmit}>
         <textarea
