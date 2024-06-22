@@ -1,14 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import data from "../data/db.json";
 import { createDeck } from "../utils/api";
 
 function CreateDeck() {
   const navigate = useNavigate();
-
-  // get current decks length for assigning the new deckId
-  const deckLen = data.decks.length;
-  console.log("deckLen:", deckLen);
 
   const initialFormState = {};
 
@@ -59,7 +54,7 @@ function CreateDeck() {
           onChange={handleChange}
         ></textarea>
         <button onClick={() => navigate(`/`)}>Cancel</button>
-        <input type="submit" value="submit" />
+        <input type="submit" value="Submit" />
       </form>
     </div>
   );

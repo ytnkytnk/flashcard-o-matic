@@ -28,7 +28,7 @@ function Study() {
   }
 
   const cards = deck.cards.filter((card) => card.deckId === Number(deckId));
-  console.log("cards:", cards);
+  //   console.log("cards:", cards);
 
   // if there are more than 3 cards, return flashcard #1
   // if not, show 'Not enough cards' message with 'Add Cards' button
