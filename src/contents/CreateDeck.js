@@ -16,16 +16,15 @@ function CreateDeck() {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const controller = new AbortController();
-    const signal = controller.signal;
-
-    createDeck(formData, signal);
-    // setFormData({ ...initialFormState });
-
-    navigate(`/decks/`);
+    try {
+      const newDeck = await createDeck(formData);
+      navigate(`/decks/${newDeck.id}`);
+    } catch (error) {
+      console.error("Error creating deck:", error);
+    }
   };
 
   return (
@@ -51,7 +50,7 @@ function CreateDeck() {
           onChange={handleChange}
         ></textarea>
         <button onClick={() => navigate(`/`)}>Cancel</button>
-        <button className="action-buttons" onSubmit={handleSubmit}>
+        <button onClick={handleSubmit} className="action-buttons">
           Submit
         </button>
       </form>

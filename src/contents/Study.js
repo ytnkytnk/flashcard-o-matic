@@ -46,6 +46,7 @@ function Study() {
           onClick={() => {
             navigate(`/decks/${deck.id}/cards/new`);
           }}
+          className="action-buttons"
         >
           + Add Cards
         </button>

@@ -26,7 +26,7 @@ function Deck() {
 
   const cards = deck.cards;
 
-  function handleDeleteDeck(deckId) {
+  async function handleDeleteDeck(deckId) {
     const controller = new AbortController();
     const signal = controller.signal;
 
@@ -35,16 +35,16 @@ function Deck() {
         `Delete this deck?\r\n\r\nYou will not be able to recover it.`
       )
     ) {
-      // yes clicked >> delete
-      deleteDeck(deckId, signal);
-      navigate(`/decks/${deck.id}`);
-    } else {
-      // cancel clicked
-      navigate(`/decks/${deck.id}`);
+      try {
+        await deleteDeck(deckId, signal);
+        navigate("/");
+      } catch (error) {
+        console.error("Error deleting deck:", error);
+      }
     }
   }
 
-  function handleDeleteCard(cardId) {
+  async function handleDeleteCard(cardId) {
     const controller = new AbortController();
     const signal = controller.signal;
 
@@ -53,12 +53,14 @@ function Deck() {
         `Delete this card?\r\n\r\nYou will not be able to recover it.`
       )
     ) {
-      // yes clicked >> delete
-      deleteCard(cardId, signal);
-      navigate(`/decks/${deck.id}`);
-    } else {
-      // cancel clicked
-      navigate(`/decks/${deck.id}`);
+      try {
+        await deleteCard(cardId, signal);
+        // Refresh the deck data after deleting a card
+        const updatedDeck = await readDeck(deckId);
+        setDeck(updatedDeck);
+      } catch (error) {
+        console.error("Error deleting card:", error);
+      }
     }
   }
 

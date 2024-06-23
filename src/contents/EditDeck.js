@@ -27,15 +27,19 @@ function EditDeck() {
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const controller = new AbortController();
     const signal = controller.signal;
 
-    updateDeck(deck, signal);
-
-    navigate(`/`);
+    try {
+      updateDeck(deck, signal);
+      navigate(`/decks/${deckId}`);
+      window.location.reload();
+    } catch (error) {
+      console.errro("Error editing deck:", error);
+    }
   };
 
   if (!deck) {
@@ -64,7 +68,7 @@ function EditDeck() {
           value={deck.description}
           onChange={handleChange}
         ></textarea>
-        <button onClick={() => navigate(`/`)}>Cancel</button>
+        <button onClick={() => navigate(`/decks/${deck.id}`)}>Cancel</button>
         <input className="action-buttons" type="submit" value="Submit" />
       </form>
     </div>

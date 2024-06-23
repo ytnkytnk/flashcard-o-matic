@@ -59,10 +59,7 @@ function AddCard() {
   return (
     <div>
       <div className="flex-content-row">
-        <h2>{deck.name} </h2>
-        {/* adding ":" separately to pass the test */}
-        <h2>: </h2>
-        <h2> Add Card</h2>
+        <h2>{deck.name}: Add Card</h2>
       </div>
       <label>Front</label>
       <form onSubmit={handleSubmit}>

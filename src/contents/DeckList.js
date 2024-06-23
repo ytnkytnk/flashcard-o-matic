@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { deleteDeck } from "../utils/api";
-import data from "../data/db.json";
+import { listDecks, deleteDeck } from "../utils/api";
 
 function DeckList() {
   const navigate = useNavigate();
 
-  function handleDelete(deckId) {
+  const [decks, setDecks] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const loadDecks = async () => {
+      const loadedDecks = await listDecks();
+      setDecks(loadedDecks);
+      setIsLoading(false);
+    };
+    loadDecks();
+  }, []);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  async function handleDeleteDeck(deckId) {
     const controller = new AbortController();
     const signal = controller.signal;
 
@@ -15,12 +30,13 @@ function DeckList() {
         `Delete this deck?\r\n\r\nYou will not be able to recover it.`
       )
     ) {
-      // yes clicked >> delete
-      deleteDeck(deckId, signal);
-      navigate(`/`);
-    } else {
-      // cancel clicked >> go to Home
-      navigate(`/`);
+      try {
+        await deleteDeck(deckId, signal);
+        navigate("/");
+        window.location.reload();
+      } catch (error) {
+        console.error("Error deleting deck:", error);
+      }
     }
   }
 
@@ -34,49 +50,46 @@ function DeckList() {
       >
         + Create Deck
       </button>
-      {data.decks.map((deck) => {
-        const cardCount = data.cards.filter(
-          (card) => card.deckId === deck.id
-        ).length;
-
-        return (
-          <div key={deck.id} className="deck-contents">
-            <div className="flex-row-space-between">
-              <h2>Mock {deck.name}</h2>
-              <p>{cardCount} cards</p>
-            </div>
-            <p>{deck.description}</p>
-            <div className="flex-row-space-between">
-              <div>
-                <button
-                  id={deck.id}
-                  onClick={() => {
-                    navigate(`/decks/${deck.id}`);
-                  }}
-                >
-                  View
-                </button>
-                <button
-                  className="action-buttons"
-                  onClick={() => {
-                    navigate(`/decks/${deck.id}/study`);
-                  }}
-                >
-                  Study
-                </button>
+      {decks &&
+        decks.map((deck) => {
+          return (
+            <div key={deck.id} className="deck-contents">
+              <div className="flex-row-space-between">
+                <h2>{deck.name}</h2>
+                <span>{deck.cards.length} cards</span>
               </div>
-              <div>
-                <button
-                  className="delete-button"
-                  onClick={() => handleDelete(deck.id)}
-                >
-                  Delete
-                </button>
+              <p>{deck.description}</p>
+              <div className="flex-row-space-between">
+                <div>
+                  <button
+                    id={deck.id}
+                    onClick={() => {
+                      navigate(`/decks/${deck.id}`);
+                    }}
+                  >
+                    View
+                  </button>
+                  <button
+                    className="action-buttons"
+                    onClick={() => {
+                      navigate(`/decks/${deck.id}/study`);
+                    }}
+                  >
+                    Study
+                  </button>
+                </div>
+                <div>
+                  <button
+                    className="delete-button"
+                    onClick={() => handleDeleteDeck(deck.id)}
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
     </div>
   );
 }

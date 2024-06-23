@@ -48,17 +48,22 @@ function EditCard() {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const controller = new AbortController();
     const signal = controller.signal;
 
-    updateCard(formData, signal);
+    try {
+      await updateCard(formData, signal);
 
-    event.target.reset();
+      event.target.reset();
 
-    navigate(`/decks/${deckId}/`);
+      navigate(`/decks/${deckId}/`);
+      window.location.reload();
+    } catch (error) {
+      console.error("Error editing card", error);
+    }
   };
 
   if (!deck) {
