@@ -44,7 +44,7 @@ function EditDeck() {
 
   return (
     <div>
-      <h1>Edit Deck page</h1>
+      <h1>Edit Deck</h1>
       <label>Name</label>
       <form onSubmit={handleSubmit}>
         <input

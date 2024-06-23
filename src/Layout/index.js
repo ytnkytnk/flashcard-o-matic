@@ -9,12 +9,13 @@ import Study from "../contents/Study";
 import EditDeck from "../contents/EditDeck";
 import EditCard from "../contents/EditCard";
 import AddCard from "../contents/AddCard";
+import BreadCrumb from "../contents/BreadCrumb";
 
 function Layout() {
   return (
     <div>
       <Header />
-      <Link to="/">Go Home</Link>
+      <BreadCrumb />
       <div className="container">
         {/* TODO: Implement the screen starting here */}
         <Routes>

@@ -33,13 +33,10 @@ function Study() {
   // if there are more than 3 cards, return flashcard #1
   // if not, show 'Not enough cards' message with 'Add Cards' button
 
-  // skipping ": Study" to pass the automation test..
-  // const deckTitle = `${deck.name}: Study`;
-
   if (deck.cards.length < 3) {
     return (
       <div>
-        <h1>{deck.name}</h1>
+        <h1>Study: {deck.name}</h1>
         <h2>Not enough cards</h2>
         <p>
           You need at least 3 cards to study. There are {deck.cards.length}{" "}
@@ -74,7 +71,7 @@ function Study() {
 
   return (
     <div>
-      <h1>{deck.name}</h1>
+      <h1>Study: {deck.name}</h1>
       <div className="single-card-contents">
         <h3>
           Card {currentCardId} of {cards.length}

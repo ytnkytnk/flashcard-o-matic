@@ -110,3 +110,10 @@ button {
   padding: 10px;
   border: solid 1px lightgrey;
 }
+
+/* Breadcrumbs */
+
+nav {
+  background-color: lightgrey;
+  padding: 5px;
+}

@@ -66,7 +66,7 @@ function EditCard() {
   }
   return (
     <div>
-      <h1>Edit Card page</h1>
+      <h1 id="content-title">Edit Card</h1>
       <label>Front</label>
       <form onSubmit={handleSubmit}>
         <textarea

@@ -62,10 +62,13 @@ function Deck() {
     }
   }
 
+  const deckTitle = deck.name;
+
   return (
     <div>
       <div className="current-deck-contents">
-        <h2>{deck.name}</h2>
+        {/* <h2>{deck.name}</h2> */}
+        <h2>{deckTitle}</h2>
         <p>{deck.description}</p>
         <div className="flex-row-space-between">
           <div>
@@ -95,7 +98,7 @@ function Deck() {
         </div>
       </div>
       <hr />
-      <h1>Deck Cards</h1>
+      <h1>Cards</h1>
       {cards.map((card) => (
         <div className="deck-card-contents">
           <div className="card-text-contents">

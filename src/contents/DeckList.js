@@ -38,12 +38,11 @@ function DeckList() {
         const cardCount = data.cards.filter(
           (card) => card.deckId === deck.id
         ).length;
-        const deckName = deck.name;
 
         return (
           <div key={deck.id} className="deck-contents">
             <div className="flex-row-space-between">
-              <h2>{deckName}</h2>
+              <h2>{deck.name}</h2>
               <p>{cardCount} cards</p>
             </div>
             <p>{deck.description}</p>

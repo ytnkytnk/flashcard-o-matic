@@ -30,7 +30,7 @@ function CreateDeck() {
 
   return (
     <div>
-      <h1>Create Deck</h1>
+      <h1 id="content-title">Create Deck</h1>
       <label>Name</label>
       <form>
         <input

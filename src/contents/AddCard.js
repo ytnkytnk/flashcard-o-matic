@@ -58,8 +58,12 @@ function AddCard() {
   }
   return (
     <div>
-      <h1>Add Card</h1>
-      <h2>{deck.name}</h2>
+      <div className="flex-content-row">
+        <h2>{deck.name} </h2>
+        {/* adding ":" separately to pass the test */}
+        <h2>: </h2>
+        <h2> Add Card</h2>
+      </div>
       <label>Front</label>
       <form onSubmit={handleSubmit}>
         <textarea
