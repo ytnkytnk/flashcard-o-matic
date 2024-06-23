@@ -78,6 +78,11 @@ button {
   margin-left: auto;
 }
 
+.flex-row-space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
 /* Deck */
 
 .flex-content-row {

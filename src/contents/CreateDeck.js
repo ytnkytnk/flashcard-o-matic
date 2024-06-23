@@ -14,7 +14,6 @@ function CreateDeck() {
       ...formData,
       [target.name]: target.value,
     });
-    // console.log("handling changes........");
   };
 
   const handleSubmit = (event) => {
@@ -23,10 +22,8 @@ function CreateDeck() {
     const controller = new AbortController();
     const signal = controller.signal;
 
-    console.log("before formData submit:", formData);
     createDeck(formData, signal);
     // setFormData({ ...initialFormState });
-    console.log("formData was submitted!", formData);
 
     navigate(`/decks/`);
   };
@@ -35,7 +32,7 @@ function CreateDeck() {
     <div>
       <h1>Create Deck</h1>
       <label>Name</label>
-      <form onSubmit={handleSubmit}>
+      <form>
         <input
           style={{ width: "100%" }}
           type="text"
@@ -54,7 +51,7 @@ function CreateDeck() {
           onChange={handleChange}
         ></textarea>
         <button onClick={() => navigate(`/`)}>Cancel</button>
-        <input type="submit" value="Submit" />
+        <button onSubmit={handleSubmit}>Submit</button>
       </form>
     </div>
   );

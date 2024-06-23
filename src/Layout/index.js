@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import Header from "./Header";
 import NotFound from "./NotFound";
@@ -9,17 +9,8 @@ import Study from "../contents/Study";
 import EditDeck from "../contents/EditDeck";
 import EditCard from "../contents/EditCard";
 import AddCard from "../contents/AddCard";
-import data from "../data/db.json";
 
 function Layout() {
-  const decks = data.decks;
-  // const deckCards = data.cards;
-  // console.log(deckCards);
-  const [currentDeck, setCurrentDeck] = useState(null);
-  // console.log("currentDeck:", currentDeck);
-  // const currentDeckInfo = decks[currentDeck];
-  // console.log("currentDeckInfo:", currentDeckInfo);
-
   return (
     <div>
       <Header />
@@ -27,10 +18,7 @@ function Layout() {
       <div className="container">
         {/* TODO: Implement the screen starting here */}
         <Routes>
-          <Route
-            path="/"
-            element={<DeckList decks={decks} setCurrentDeck={setCurrentDeck} />}
-          />
+          <Route path="/" element={<DeckList />} />
           <Route path="/decks/">
             <Route path=":deckId/" element={<Deck />} />
             <Route path=":deckId/study" element={<Study />} />
