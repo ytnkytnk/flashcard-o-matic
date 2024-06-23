@@ -68,16 +68,6 @@ button {
   border: solid 1px lightgrey;
 }
 
-.button-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.right-edge-buttons {
-  margin-left: auto;
-}
-
 .flex-row-space-between {
   display: flex;
   justify-content: space-between;

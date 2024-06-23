@@ -1,9 +1,28 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { deleteDeck } from "../utils/api";
 import data from "../data/db.json";
 
 function DeckList() {
   const navigate = useNavigate();
+
+  function handleDelete(deckId) {
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    if (
+      window.confirm(
+        `Delete this deck?\r\n\r\nYou will not be able to recover it.`
+      )
+    ) {
+      // yes clicked >> delete
+      deleteDeck(deckId, signal);
+      navigate(`/`);
+    } else {
+      // cancel clicked >> go to Home
+      navigate(`/`);
+    }
+  }
 
   return (
     <div>
@@ -28,8 +47,8 @@ function DeckList() {
               <p>{cardCount} cards</p>
             </div>
             <p>{deck.description}</p>
-            <div className="button-container">
-              <div className="left-edge-buttons">
+            <div className="flex-row-space-between">
+              <div>
                 <button
                   id={deck.id}
                   onClick={() => {
@@ -46,8 +65,8 @@ function DeckList() {
                   Study
                 </button>
               </div>
-              <div className="right-edge-buttons">
-                <button className="right-edge-buttons">Delete</button>
+              <div>
+                <button onClick={() => handleDelete(deck.id)}>Delete</button>
               </div>
             </div>
           </div>
