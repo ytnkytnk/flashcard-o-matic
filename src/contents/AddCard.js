@@ -84,7 +84,7 @@ function AddCard() {
           onChange={handleChange}
         ></textarea>
         <button onClick={() => navigate(`/decks/${deckId}`)}>Done</button>
-        <input type="submit" value="Save" />
+        <input className="action-buttons" type="submit" value="Save" />
       </form>
     </div>
   );

@@ -47,6 +47,22 @@ button {
   border: solid 1px grey;
 }
 
+.delete-button {
+  border: solid 1px red;
+  background-color: red;
+  color: white;
+}
+
+.action-buttons {
+  border: solid 1px blue;
+  background-color: blue;
+  color: white;
+}
+
+.right-edge-buttons {
+  text-align: right;
+}
+
 /* Header */
 
 .jumbotron {
@@ -97,10 +113,6 @@ button {
 
 .right-column {
   width: 50%;
-}
-
-.right-edge-buttons {
-  text-align: right;
 }
 
 /* Study */

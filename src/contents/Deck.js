@@ -80,6 +80,7 @@ function Deck() {
               Edit
             </button>
             <button
+              className="action-buttons"
               onClick={() => {
                 navigate(`study`);
               }}
@@ -87,6 +88,7 @@ function Deck() {
               Study
             </button>
             <button
+              className="action-buttons"
               onClick={() => {
                 navigate(`cards/new`);
               }}
@@ -94,7 +96,12 @@ function Deck() {
               + Add Cards
             </button>
           </div>
-          <button onClick={() => handleDeleteDeck(deck.id)}>Delete</button>
+          <button
+            className="delete-button"
+            onClick={() => handleDeleteDeck(deck.id)}
+          >
+            Delete
+          </button>
         </div>
       </div>
       <hr />
@@ -109,13 +116,18 @@ function Deck() {
             <button
               id={card.id}
               onClick={() => {
-                console.log(card.id);
+                // console.log(card.id);
                 navigate(`cards/${card.id}/edit`);
               }}
             >
               Edit
             </button>
-            <button onClick={() => handleDeleteCard(card.id)}>Delete</button>
+            <button
+              className="delete-button"
+              onClick={() => handleDeleteCard(card.id)}
+            >
+              Delete
+            </button>
           </div>
         </div>
       ))}

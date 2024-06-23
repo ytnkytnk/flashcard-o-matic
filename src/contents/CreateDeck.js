@@ -51,7 +51,9 @@ function CreateDeck() {
           onChange={handleChange}
         ></textarea>
         <button onClick={() => navigate(`/`)}>Cancel</button>
-        <button onSubmit={handleSubmit}>Submit</button>
+        <button className="action-buttons" onSubmit={handleSubmit}>
+          Submit
+        </button>
       </form>
     </div>
   );

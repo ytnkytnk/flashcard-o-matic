@@ -87,7 +87,7 @@ function EditCard() {
           onChange={handleChange}
         ></textarea>
         <button onClick={() => navigate(`/decks/${deckId}`)}>Cancel</button>
-        <input type="submit" value="Submit" />
+        <input className="action-buttons" type="submit" value="Submit" />
       </form>
     </div>
   );

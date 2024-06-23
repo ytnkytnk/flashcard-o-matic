@@ -1,50 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { readDeck } from "../utils/api";
-
-// function BreadCrumb() {
-//   const location = useLocation();
-//   console.log(location);
-//   const pathnames = location.pathname.split("/").filter((x) => x);
-
-//   const { deckId, cardId } = useParams();
-
-//   // do not show breadcrumbs on Home page
-//   if (pathnames.length === 0) return null;
-
-//   const breadcrumbs = [];
-
-//   let currentLink = "";
-
-//   pathnames.forEach((name, index) => {
-//     currentLink += `/${name}`;
-
-//     // skip 'decks' and 'cards' in the breadcrumbs
-//     // if (name === "decks" || name === "cards") return;
-
-//     let label = name.charAt(0).toUpperCase() + name.slice(1);
-
-//     if (index === pathnames.length - 1) {
-//       // last item, no link
-//       breadcrumbs.push(<span>{label}</span>);
-//     } else {
-//       breadcrumbs.push(<Link to={currentLink}>{label}</Link>);
-//     }
-
-//     // add separator
-//     if (index < pathnames.length - 1) {
-//       breadcrumbs.push(<span> / </span>);
-//     }
-//   });
-
-//   return (
-//     <nav>
-//       <Link to="/">Home</Link>
-//       {breadcrumbs.length > 0 && <span> / </span>}
-//       {breadcrumbs}
-//     </nav>
-//   );
-// }
 
 function BreadCrumb() {
   const location = useLocation();
@@ -69,7 +25,8 @@ function BreadCrumb() {
     fetchDeckTitle();
   }, [pathnames]);
 
-  if (pathnames.length === 0) return null; // Don't show breadcrumbs on home page
+  // Don't show breadcrumbs on home page
+  if (pathnames.length === 0) return null;
 
   const breadcrumbs = [];
 

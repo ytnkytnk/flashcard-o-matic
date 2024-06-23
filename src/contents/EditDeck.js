@@ -65,7 +65,7 @@ function EditDeck() {
           onChange={handleChange}
         ></textarea>
         <button onClick={() => navigate(`/`)}>Cancel</button>
-        <input type="submit" value="Submit" />
+        <input className="action-buttons" type="submit" value="Submit" />
       </form>
     </div>
   );

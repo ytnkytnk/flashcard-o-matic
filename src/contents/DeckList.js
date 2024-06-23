@@ -42,7 +42,7 @@ function DeckList() {
         return (
           <div key={deck.id} className="deck-contents">
             <div className="flex-row-space-between">
-              <h2>{deck.name}</h2>
+              <h2>Mock {deck.name}</h2>
               <p>{cardCount} cards</p>
             </div>
             <p>{deck.description}</p>
@@ -57,6 +57,7 @@ function DeckList() {
                   View
                 </button>
                 <button
+                  className="action-buttons"
                   onClick={() => {
                     navigate(`/decks/${deck.id}/study`);
                   }}
@@ -65,7 +66,12 @@ function DeckList() {
                 </button>
               </div>
               <div>
-                <button onClick={() => handleDelete(deck.id)}>Delete</button>
+                <button
+                  className="delete-button"
+                  onClick={() => handleDelete(deck.id)}
+                >
+                  Delete
+                </button>
               </div>
             </div>
           </div>
