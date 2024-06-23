@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { readDeck } from "../utils/api";
+import { readDeck, deleteDeck, deleteCard } from "../utils/api";
 
 function Deck() {
   const navigate = useNavigate();
@@ -26,13 +26,49 @@ function Deck() {
 
   const cards = deck.cards;
 
+  function handleDeleteDeck(deckId) {
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    if (
+      window.confirm(
+        `Delete this deck?\r\n\r\nYou will not be able to recover it.`
+      )
+    ) {
+      // yes clicked >> delete
+      deleteDeck(deckId, signal);
+      navigate(`/decks/${deck.id}`);
+    } else {
+      // cancel clicked
+      navigate(`/decks/${deck.id}`);
+    }
+  }
+
+  function handleDeleteCard(cardId) {
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    if (
+      window.confirm(
+        `Delete this card?\r\n\r\nYou will not be able to recover it.`
+      )
+    ) {
+      // yes clicked >> delete
+      deleteCard(cardId, signal);
+      navigate(`/decks/${deck.id}`);
+    } else {
+      // cancel clicked
+      navigate(`/decks/${deck.id}`);
+    }
+  }
+
   return (
     <div>
       <div className="current-deck-contents">
         <h2>{deck.name}</h2>
         <p>{deck.description}</p>
-        <div className="flex-content-row">
-          <div className="left-deck-buttons">
+        <div className="flex-row-space-between">
+          <div>
             <button
               onClick={() => {
                 navigate(`edit`);
@@ -55,7 +91,7 @@ function Deck() {
               + Add Cards
             </button>
           </div>
-          <button className="right-edge-buttons">Delete</button>
+          <button onClick={() => handleDeleteDeck(deck.id)}>Delete</button>
         </div>
       </div>
       <hr />
@@ -76,7 +112,7 @@ function Deck() {
             >
               Edit
             </button>
-            <button>Delete</button>
+            <button onClick={() => handleDeleteCard(card.id)}>Delete</button>
           </div>
         </div>
       ))}
