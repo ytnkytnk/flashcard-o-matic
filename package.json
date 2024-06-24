@@ -17,7 +17,7 @@
   "scripts": {
     "start": "concurrently \"npm run start:server\" \"npm run start:react\" \"npm run start:express\"",
     "start:react": "react-scripts start",
-    "start:server": "json-server ./data/db.json --port 8080",
+    "start:server": "json-server ./data/db.json --port 5000",
     "start:express": "node ./src/server/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
